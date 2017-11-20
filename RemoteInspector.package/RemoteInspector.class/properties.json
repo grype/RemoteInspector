@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"DefaultInstance"
+	],
+	"instvars" : [
+		"responder",
+		"announcer",
+		"browser",
+		"data",
+		"browserWindow"
+	],
+	"name" : "RemoteInspector",
+	"type" : "normal"
+}
