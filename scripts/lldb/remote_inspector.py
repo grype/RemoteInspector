@@ -14,13 +14,11 @@ def __lldb_init_module(debugger, internal_dict):
     print 'Use "ri" command in the same manner as you would po, to inspect the object via remote inspector.'
 
 def remote_inspect(debugger, command, result, internal_dict):
-    target = debugger.GetSelectedTarget()
-    process = target.GetProcess()
-    thread = process.GetSelectedThread()
-    frame = thread.GetSelectedFrame()
+    frame = debugger.GetSelectedTarget().GetProcess().GetSelectedThread().GetSelectedFrame()
     
-    value = frame.EvaluateExpression("print " + command)
-    rpc_call("inspect", [command, value.summary.strip()])
+    #value = frame.EvaluateExpression("print " + command)
+    value = eval_json(frame, command) 
+    rpc_call("inspect", [command, value.summary])
     
 def remote_reset(debugger, command, result, internal_dict):
     rpc_call("reset", None)
@@ -28,7 +26,7 @@ def remote_reset(debugger, command, result, internal_dict):
 def rpc_call(command, value):
     payload = {"jsonrpc": "2.0", "id": 1, "method": command}
     if value != None:
-        payload["params"] = value
+        payload["params"] = json.loads(value)
     
     subprocess.call(["syslog", "-s", "-l", "notice", "curl", "-H", "Content-Type: application/json", "http://localhost:16164/api/jsonrpc", "-d", json.dumps(payload)])
     subprocess.call(["curl", "-H", "Content-Type: application/json", "http://localhost:16164/api/jsonrpc", "-d", json.dumps(payload,separators=(',',':'))])
