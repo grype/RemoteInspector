@@ -1,4 +1,4 @@
 methods
 inspect: anObj at: inspectorKey
-	data at: inspectorKey put: (NeoJSONReader fromString: anObj).
+	data at: inspectorKey put: anObj.
 	self updateAndShow.
