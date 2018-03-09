@@ -15,28 +15,25 @@ def __lldb_init_module(debugger, internal_dict):
 
 def remote_inspect(debugger, command, result, internal_dict):
     frame = debugger.GetSelectedTarget().GetProcess().GetSelectedThread().GetSelectedFrame()
-    
-    #value = frame.EvaluateExpression("print " + command)
-    value = eval_json(frame, command) 
-    rpc_call("inspect", [command, value.summary])
+    value = frame.EvaluateExpression("print " + command).summary
+    #value = eval_print_json(frame, command).summary
+    rpc_call("inspect", [ command, value ])
     
 def remote_reset(debugger, command, result, internal_dict):
     rpc_call("reset", None)
     
-def rpc_call(command, value):
-    payload = {"jsonrpc": "2.0", "id": 1, "method": command}
-    if value != None:
-        payload["params"] = json.loads(value)
-    
-    subprocess.call(["syslog", "-s", "-l", "notice", "curl", "-H", "Content-Type: application/json", "http://localhost:16164/api/jsonrpc", "-d", json.dumps(payload)])
+def rpc_call(method, value):
+    payload = {"jsonrpc": "2.0", "id": 1, "method": method}
+    payload["params"] = value
+    #subprocess.call(["syslog", "-s", "-l", "notice", "curl", "-H", "Content-Type: application/json", "http://localhost:16164/api/jsonrpc", "-d", json.dumps(payload)])
     subprocess.call(["curl", "-H", "Content-Type: application/json", "http://localhost:16164/api/jsonrpc", "-d", json.dumps(payload,separators=(',',':'))])
 
 def print_json(debugger, command, result, internal_dict):
     frame = debugger.GetSelectedTarget().GetProcess().GetSelectedThread().GetSelectedFrame()
-    result = eval_json(frame, command) 
+    result = eval_print_json(frame, command) 
     print result.summary
         
-def eval_json(frame, command):
+def eval_print_json(frame, command):
     expr = [
         "var $data = JSONSerialization.data(withJSONObject: [("+command+")], options: JSONSerialization.WritingOptions(rawValue: 0))",
         "var $result = String(data: $data, encoding: String.Encoding.utf8)",
