@@ -1,0 +1,4 @@
+grammar
+start
+	"^ stackTrace"
+	^ threadLine  

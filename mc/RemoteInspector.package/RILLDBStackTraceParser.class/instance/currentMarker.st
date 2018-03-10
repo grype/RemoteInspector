@@ -1,0 +1,3 @@
+grammar
+currentMarker
+	^ $* asPParser 

@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "RIRemoteObject",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"number",
+		"frames",
+		"attributes",
+		"isCurrent"
+	],
+	"name" : "RIRemoteThread",
+	"type" : "normal"
+}

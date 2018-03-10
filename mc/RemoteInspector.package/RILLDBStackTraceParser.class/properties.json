@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "PP2CompositeNode",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stackTrace",
+		"thread",
+		"threadLine",
+		"currentMarker",
+		"start",
+		"frameNumber",
+		"threadInfo",
+		"frameLine",
+		"frameInfo",
+		"frameAddress"
+	],
+	"name" : "RILLDBStackTraceParser",
+	"type" : "normal"
+}
