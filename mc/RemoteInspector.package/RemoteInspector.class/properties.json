@@ -12,7 +12,8 @@
 		"announcer",
 		"browser",
 		"data",
-		"browserWindow"
+		"browserWindow",
+		"backtraces"
 	],
 	"name" : "RemoteInspector",
 	"type" : "normal"
