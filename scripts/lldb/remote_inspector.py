@@ -9,6 +9,8 @@ def __lldb_init_module(debugger, internal_dict):
     debugger.HandleCommand("command script add -f " + __name__ + ".remote_inspect ri")
     debugger.HandleCommand("command script add -f " + __name__ + ".remote_reset rr")
     debugger.HandleCommand("command script add -f " + __name__ + ".print_json pj")
+    debugger.HandleCommand("command script add -f " + __name__ + ".remote_trace rt")
+    debugger.HandleCommand("command script add -f " + __name__ + ".log_to_file lf")
     rpc_call("reset", None)
     
     print 'Use "ri" command in the same manner as you would po, to inspect the object via remote inspector.'
@@ -18,6 +20,14 @@ def remote_inspect(debugger, command, result, internal_dict):
     value = frame.EvaluateExpression("print " + command).summary
     #value = eval_print_json(frame, command).summary
     rpc_call("inspect", [ command, value ])
+    
+def remote_trace(debugger, command, result, internal_dict):
+    frame = debugger.GetSelectedTarget().GetProcess().GetSelectedThread().GetSelectedFrame()
+    
+    #value = frame.EvaluateExpression("thread backtrace all")
+    value = frame.EvaluateExpression("bt")
+    #subprocess.call(["syslog", "-s", "-l", "notice", "HERE HERE HERE")
+    rpc_call("trace", [value.summary])
     
 def remote_reset(debugger, command, result, internal_dict):
     rpc_call("reset", None)
@@ -42,3 +52,8 @@ def eval_print_json(frame, command):
         "print $result"
     ]
     return frame.EvaluateExpression("; ".join(expr))
+
+
+def log_to_file(debugger, command, result, dict):
+  f=open("/tmp/lldb.out","w")
+  debugger.SetOutputFileHandle(f,True)
