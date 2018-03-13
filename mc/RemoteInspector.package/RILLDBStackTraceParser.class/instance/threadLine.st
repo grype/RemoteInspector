@@ -1,6 +1,7 @@
 grammar
 threadLine
-	^ (currentMarker optional , #space asPParser star) asPParser flatten
+	^ currentMarker optional 
+	, #space asPParser star flatten
 	, 'thread ' asPParser
 	, frameNumber 
 	, threadInfo optional 
@@ -8,6 +9,7 @@ threadLine
 		| thread |
 		thread := RIRemoteThread new.
 		matches first ifNotNil: [ :current | thread isCurrent: true ].
-		matches third ifNotNil: [ :num | thread number: num ].
+		matches fourth ifNotNil: [ :num | thread number: num ].
+		matches fifth ifNotNil: [ :attrs | thread attributes addAll: attrs ].
 		thread
 		]

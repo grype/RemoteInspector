@@ -15,7 +15,10 @@
 		"threadInfo",
 		"frameLine",
 		"frameInfo",
-		"frameAddress"
+		"frameAddress",
+		"frameSource",
+		"frameLocation",
+		"frames"
 	],
 	"name" : "RILLDBStackTraceParser",
 	"type" : "normal"

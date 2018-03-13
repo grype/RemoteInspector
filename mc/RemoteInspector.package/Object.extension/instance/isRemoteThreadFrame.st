@@ -1,0 +1,3 @@
+*RemoteInspector
+isRemoteThreadFrame
+	^ false

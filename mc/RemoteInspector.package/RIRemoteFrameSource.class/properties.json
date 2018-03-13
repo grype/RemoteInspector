@@ -6,10 +6,12 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"number",
-		"isCurrent",
-		"info"
+		"module",
+		"caller",
+		"file",
+		"lineNumber",
+		"offset"
 	],
-	"name" : "RIRemoteFrame",
+	"name" : "RIRemoteFrameSource",
 	"type" : "normal"
 }

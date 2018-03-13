@@ -1,13 +1,15 @@
 grammar
 frameLine
-	^ #space asPParser star flatten
-	, (currentMarker , #space asPParser) optional 
+	^ #space asPParser star
+	, (currentMarker , #space asPParser star) asPParser optional 
 	, 'frame ' asPParser 
 	, frameNumber 
+	, ($: asPParser , #space asPParser star) asPParser flatten
 	, frameInfo optional 
 	==> [ :matches | 
-		| frame |
-		frame := RIRemoteFrame new.
-		matches third ifNotNil: [ :current | frame isCurrent: true ].
-		frame
+		RIRemoteFrame new 
+			isCurrent: (matches second isNotNil);
+			number: matches fourth;
+			info: matches last;
+			yourself.
 		]

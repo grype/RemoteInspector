@@ -1,4 +1,4 @@
 grammar
 start
 	"^ stackTrace"
-	^ threadLine  
+	^ thread plus

@@ -1,5 +1,5 @@
 grammar
 threadInfo
-	^ ($, asPParser , #any asPParser starLazy flatten) asPParser star ==> [ :args |
-		self halt
+	^ ($, asPParser , #newline asPParser negate starLazy flatten) asPParser star ==> [ :matches | 
+		matches collect: [ :each | each last ]
 		]

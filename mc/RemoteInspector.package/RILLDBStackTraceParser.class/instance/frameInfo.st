@@ -1,11 +1,10 @@
 grammar
 frameInfo
 	^ frameAddress 
-	, (#any asPParser starLazy flatten) 
-	, ' at ' asPParser 
-	, #any asPParser plus 
-	, $: asPParser 
-	, (#digit asPParser plus) 
-	==> [ :arg | 
-		self halt.
+	, (frameSource / frameLocation)
+	==> [ :matches | 
+		RIRemoteFrameInfo new 
+			address: matches first; 
+			source: matches second;
+			yourself.
 		]

@@ -6,10 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"number",
-		"isCurrent",
-		"info"
+		"address",
+		"source"
 	],
-	"name" : "RIRemoteFrame",
+	"name" : "RIRemoteFrameInfo",
 	"type" : "normal"
 }

@@ -1,6 +1,7 @@
 grammar
 thread
-	^ (threadLine , (#newline asPParser , frameLine) star)
+	^ threadLine 
+	, frameLine star
 		==> [ :matches | 
 			matches first
 				frames: matches second;
