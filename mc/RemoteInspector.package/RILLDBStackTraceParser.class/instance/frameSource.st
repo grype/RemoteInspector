@@ -2,7 +2,8 @@ grammar
 frameSource
 	^ #any asPParser starLazy flatten 
 		, $` asPParser
-		, (#newline asPParser negate starLazy flatten , ' at ' asPParser) asPParser plus flatten
+		, #newline asPParser negate starLazy flatten 
+		, ' at ' asPParser plus flatten
 		, #newline asPParser negate starLazy flatten 
 		, $: asPParser
 		, #digit asPParser plus flatten
@@ -10,6 +11,6 @@ frameSource
 			RIRemoteFrameSource new
 				module: matches first;
 				caller: matches third;
-				file: matches fourth;
-				lineNumber: matches sixth;
+				file: matches fifth;
+				lineNumber: matches seventh;
 				yourself ]
