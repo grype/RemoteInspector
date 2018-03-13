@@ -1,3 +1,3 @@
 grammar
 stackTrace
-	^ thread star
+	^ thread plus
