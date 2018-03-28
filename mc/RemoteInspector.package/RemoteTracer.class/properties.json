@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "MemoryLogger",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"DefaultInstance"
+	],
+	"instvars" : [
+		"rpcResponder"
+	],
+	"name" : "RemoteTracer",
+	"type" : "normal"
+}

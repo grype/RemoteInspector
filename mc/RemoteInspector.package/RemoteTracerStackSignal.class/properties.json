@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "ThisContextSignal",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"remoteStack"
+	],
+	"name" : "RemoteTracerStackSignal",
+	"type" : "normal"
+}

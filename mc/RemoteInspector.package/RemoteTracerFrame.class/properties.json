@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"pc",
+		"stackp",
+		"module",
+		"function",
+		"closure",
+		"arguments",
+		"variables",
+		"file",
+		"line",
+		"language"
+	],
+	"name" : "RemoteTracerFrame",
+	"type" : "variable"
+}
