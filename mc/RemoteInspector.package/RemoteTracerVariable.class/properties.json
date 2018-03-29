@@ -6,17 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pc",
-		"stackp",
-		"module",
-		"function",
-		"closure",
-		"arguments",
-		"variables",
-		"file",
-		"line",
-		"language"
+		"varname",
+		"varvalue",
+		"vartype"
 	],
-	"name" : "RemoteTracerFrame",
+	"name" : "RemoteTracerVariable",
 	"type" : "variable"
 }

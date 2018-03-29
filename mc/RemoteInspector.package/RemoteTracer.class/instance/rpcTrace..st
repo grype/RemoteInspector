@@ -1,5 +1,7 @@
 methods
-rpcTrace: aString
-	self halt.
-	aString isEmptyOrNil ifTrue: [ ^ self ].
-	RemoteTracerStackSignal withStack: aString
+rpcTrace: json
+	| frame |
+	json isEmptyOrNil
+		ifTrue: [ ^ self ].
+	frame := RemoteTracerFrame fromJson: json asJson.
+	(RemoteTracerStackSignal withStack: {frame}) emit
