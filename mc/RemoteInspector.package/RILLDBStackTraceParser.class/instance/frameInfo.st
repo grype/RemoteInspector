@@ -1,7 +1,7 @@
 grammar
 frameInfo
 	^ frameAddress 
-	, (frameSource / frameLocation)
+	, (frameSourceWithFile / frameLocation / frameSource)
 	==> [ :matches | 
 		RIRemoteFrameInfo new 
 			address: matches first; 

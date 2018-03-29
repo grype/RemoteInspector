@@ -18,7 +18,8 @@
 		"frameAddress",
 		"frameSource",
 		"frameLocation",
-		"frames"
+		"frames",
+		"frameSourceWithFile"
 	],
 	"name" : "RILLDBStackTraceParser",
 	"type" : "normal"

@@ -1,3 +1,3 @@
 accessing
 lineNumber: anObject
-	lineNumber := anObject asInteger
+	lineNumber := anObject ifNotNil: [:i | i asInteger]
