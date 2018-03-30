@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GRObject",
+	"category" : "RemoteInspector",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"frames"
+	],
+	"name" : "RemoteTracerStack",
+	"type" : "variable"
+}

@@ -1,7 +1,7 @@
 methods
 rpcTrace: json
-	| frame |
+	| stack |
 	json isEmptyOrNil
 		ifTrue: [ ^ self ].
-	frame := RemoteTracerFrame fromJson: json asJson.
-	(RemoteTracerStackSignal withStack: {frame}) emit
+	stack := RemoteTracerStack fromJson: json asJson.
+	(RemoteTracerStackSignal withStack: stack frames) emit
