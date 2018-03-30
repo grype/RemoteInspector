@@ -14,7 +14,13 @@ def __lldb_init_module(debugger, internal_dict):
     
 def remote_trace(debugger, command, result, internal_dict):
     thread = debugger.GetSelectedTarget().GetProcess().GetSelectedThread()
-    frame = thread.GetSelectedFrame()
+    frames = []
+    for frame in thread.frames:
+        frames.append(thread_description(frame))
+    result = {"frames": frames}
+    rpc_call("trace", [result])
+
+def thread_description(frame):
     addr = frame.addr
     ln = addr.line_entry
     
@@ -43,19 +49,17 @@ def remote_trace(debugger, command, result, internal_dict):
     for arg in arguments:
         argInfos.append({"name": arg.name, "type": arg.GetTypeName(), "value": arg.summary})
     data["arguments"] = argInfos
-    
-    rpc_call("trace", data)
+    return data
     
     
 #==== Utils =====#
     
 def rpc_call(method, value):
     payload = {"jsonrpc": "2.0", "id": 1, "method": method, "params": value}
-    jsPayload = json.dumps(payload)
-    print(jsPayload)
     url = "http://localhost:16164/api/jsonrpc"
     content_type = "application/json"
-    req = requests.post(url, json=jsPayload)
+    req = requests.post(url, json=payload)
+    print(json.dumps(payload))
         
 def eval_print_json(frame, command):
     expr = [
